@@ -20,7 +20,7 @@ v$ends <- hms("14:50:00")
 
 # v$chatFile <- list.files(pattern = "meeting_saved_chat") |> sort()
 v$chatFile <- "meeting_saved_chat.txt"
-v$chatDate <- file.info(v$chatFile )[1,"ctime"]
+v$chatDate <- file.info(v$chatFile )[1,"mtime"]
 v$filedate <- substr(v$chatDate, 1,10)
 # file.rename(v$chatFile, paste0("chat", v$filedate, ".txt"))
 # v$chatFile <- paste0("chat", v$filedate, ".txt")
@@ -107,8 +107,6 @@ v$grade_part <- cbind(as.data.frame(rownames(v$grade_part)),
                       v$grade_part[,c(4,2,3,1)])
 
 v$participation <- v$participation[order(v$participation$last),]
-v$participation <- cbind()
-# v$participation$convo[v$participation$first == 'Alejandra']
 
 write_csv2(v$grade_part,paste0("PartGrade_", v$filedate, ".csv"))
 write_csv2(v$participation, paste0("Evidence_", v$filedate, ".csv"))
